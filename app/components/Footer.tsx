@@ -18,6 +18,9 @@ export default function Footer() {
         <div className="text-s text-gray-400 text-center md:text-right">
           &copy; {new Date().getFullYear()} Patriotic Investors. All rights reserved.
         </div>
+        <div className="text-xs text-gray-400 text-center md:text-right">
+           Developed by: PAS DEV(0552233394)
+        </div>
       </div>
     </footer>
   );
