@@ -57,8 +57,8 @@ const About: React.FC = () => {
       </section>
       {/* Mission and Purpose Section */}
       <section className="py-16 bg-gray-50">
+                  <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 text-gray-900">Our Mission and Purpose</h2>
         <div className="max-w-5xl mx-auto bg-white rounded-xl shadow p-10">
-          <h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-900">Our Mission and Purpose</h2>
           <p className="text-gray-700 mb-4">
             At Patriotic Investors, our core mission is to empower Ghana's agricultural sector and unite its people. We are committed to bridging the gap between seasonal abundance and scarcity by reducing farm produce waste and ensuring a year-round supply of food. By doing so, we are actively working to enhance food security and create a sustainable, prosperous future for all Ghanaians.
           </p>

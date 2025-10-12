@@ -22,7 +22,7 @@ export default function Home() {
       His diverse background and relentless pursuit of knowledge make him a valuable asset to the Patriotic Investors community.<br /><br />
       Mr. Obeng Darko went to Opoku Ware School. He holds BSc. in Agricultural Engineering from KNUST and MSc. in Bioprocess Engineering from UCD. He has business interests in fashion retail, construction/engineering and real estate development/investment.<br /><br />
       He has written 12 books: 1. Perspective - how to develop the mindset to start and build your business 2. Streamline - how to teach yourself money. 3. Resilience 4. Unlimited opportunities. 5. African Advantage. 6. Self Investment 7. Financial Intelligence 8. Financial Freedom 9. Reset. 10. Real Estate. 11. Sales Systems. 12. Growth.<br /><br />
-      He has been on many radio and TV stations to share his thoughts on such topics. Kwabena organizes business and finance seminars as well. He also has YouTube and Facebook Channels, OBENG DARKO, where he shares on African dignity, entrepreneurship, financial education, personal development, real estate, etc. He lives in Accra with his wife, Marie and Children, Yaa, Awuraa.
+      He has been on many radio and TV stations to share his thoughts on such topics. Kwabena organizes business and finance seminars as well. He also has YouTube and Facebook Channels, OBENG DARKO, where he shares on African dignity, entrepreneurship, financial education, personal development, real estate, etc. He lives in Accra with his wife, Marie and Children, Yaa, Awuraa and Kwabena.
     </>
   );
 
