@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -13,6 +14,10 @@ export default function Contact() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState<string | null>(null);
 
+  useEffect(() => {
+    emailjs.init("Tpn6otBmseQUlFoll"); // Replace with your EmailJS Public Key
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
@@ -22,18 +27,21 @@ export default function Contact() {
     setLoading(true);
     setSuccess(null);
     try {
-      const res = await fetch("https://formspree.io/f/mnnggknk", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+      const serviceID = "service_cf1ha0o"; // Replace with your EmailJS Service ID
+      const templateID = "template_8u9c7gd"; // Replace with your EmailJS Template ID
+
+      await emailjs.send(serviceID, templateID, {
+        to_email: "your-email@example.com", // Replace with recipient email
+        from_name: form.name,
+        from_email: form.email,
+        subject: form.subject,
+        message: form.message,
       });
-      if (res.ok) {
-        setSuccess("Message sent successfully!");
-        setForm({ name: "", email: "", subject: "", message: "" });
-      } else {
-        setSuccess("Failed to send message. Please try again.");
-      }
-    } catch {
+
+      setSuccess("Message sent successfully to Patriotic Investors!");
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch (err) {
+      console.error("EmailJS error:", err);
       setSuccess("Failed to send message. Please try again.");
     }
     setLoading(false);
