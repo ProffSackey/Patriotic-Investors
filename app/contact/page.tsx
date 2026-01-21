@@ -31,7 +31,7 @@ export default function Contact() {
       const templateID = "template_8u9c7gd"; // Replace with your EmailJS Template ID
 
       await emailjs.send(serviceID, templateID, {
-        to_email: "your-email@example.com", // Replace with recipient email
+        to_email: "patrioticinvestors1@gmail.com",
         from_name: form.name,
         from_email: form.email,
         subject: form.subject,
