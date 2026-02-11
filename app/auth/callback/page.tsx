@@ -12,7 +12,9 @@ export default function AuthCallback() {
     const handleAuthCallback = async () => {
       try {
         // Exchange the code for a session
-        const { data: { session }, error: sessionError } = await supabase?.auth.getSession() || {};
+        const response = await supabase?.auth.getSession();
+        const session = response?.data?.session || null;
+        const sessionError = response?.error || null;
         
         if (sessionError) {
           console.error('Session error:', sessionError);

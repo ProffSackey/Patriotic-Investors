@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseServer } from "@/lib/supabase-server";
-import { sendPaymentConfirmationEmail, generateVerificationLink } from "@/lib/email";
 
 export async function GET(request: NextRequest) {
   try {
@@ -101,19 +100,6 @@ export async function GET(request: NextRequest) {
     if (updateError) {
       console.error("Error updating user verification:", updateError);
       // Don't fail the request - payment was successful
-    }
-
-    // Send payment confirmation email
-    const user = userData?.[0];
-    if (user?.email) {
-      const verificationLink = generateVerificationLink(userId, user.email);
-      await sendPaymentConfirmationEmail(
-        user.email,
-        user.first_name || "User",
-        amount,
-        transactionData.reference,
-        verificationLink
-      );
     }
 
     return NextResponse.json(
