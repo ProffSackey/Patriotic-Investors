@@ -40,10 +40,15 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // The exact shape of `linkData.properties` can vary and TypeScript may not
+    // expose `email_link` directly on the generated type. Use a safe cast
+    // to access the link for development debugging.
+    const magicLink = (linkData as any)?.properties?.email_link || (linkData as any)?.properties || "Generated (check spam folder)";
+
     return NextResponse.json(
       {
         message: "Email test successful",
-        magicLink: linkData?.properties?.email_link || "Generated (check spam folder)",
+        magicLink,
       },
       { status: 200 }
     );

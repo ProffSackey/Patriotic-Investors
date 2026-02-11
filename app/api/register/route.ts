@@ -76,22 +76,41 @@ export async function POST(request: NextRequest) {
     }
 
     // Send confirmation email (Supabase Auth handles this automatically)
-    const { error: emailError } = await supabaseServer.auth.admin.generateLink({
+    const { data: linkData, error: emailError } = await supabaseServer.auth.admin.generateLink({
       type: "magiclink",
       email,
     });
 
     if (emailError) {
-      console.error("❌ Email send error:", emailError);
-      // Don't fail registration if email fails - just log it
+      console.error("❌ Email send error:", emailError.message);
+      console.warn("⚠️ Email verification failed. For development, auto-verifying user...");
+      
+      // Development workaround: auto-verify user if email fails
+      if (userId && process.env.NODE_ENV !== 'production') {
+        const { error: verifyError } = await supabaseServer.auth.admin.updateUserById(userId, {
+          email_confirm: true,
+        });
+        
+        if (!verifyError) {
+          console.log("✅ User auto-verified for development");
+          // Also mark as verified in database
+          await supabaseServer
+            .from("users")
+            .update({ verified: true })
+            .eq("id", userId);
+        }
+      }
     } else {
       console.log("✅ Magic link generated for:", email);
+      const verificationLink = (linkData as any)?.properties?.email_link || (linkData as any)?.properties || null;
+      console.log("📧 Verification link:", verificationLink);
     }
 
     return NextResponse.json(
       {
         message: "Account created successfully. Check your email to verify your account.",
         userId,
+        devNote: emailError ? "Email sending failed - user auto-verified for development" : undefined,
       },
       { status: 201 }
     );
