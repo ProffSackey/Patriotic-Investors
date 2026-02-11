@@ -409,7 +409,6 @@ export default function Register() {
             {step === "verification" && (
               <>
                 <div className="text-center">
-                  <div className="mb-4 text-6xl">✓</div>
                   <h1 className="text-3xl font-bold text-gray-800 mb-4">Verify Your Email</h1>
                   <p className="text-gray-600 mb-6">
                     We&apos;ve sent a verification link to <strong>{form.email}</strong>

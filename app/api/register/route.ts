@@ -82,8 +82,10 @@ export async function POST(request: NextRequest) {
     });
 
     if (emailError) {
-      console.warn("Could not send confirmation email:", emailError);
-      // Don't fail registration if email fails
+      console.error("❌ Email send error:", emailError);
+      // Don't fail registration if email fails - just log it
+    } else {
+      console.log("✅ Magic link generated for:", email);
     }
 
     return NextResponse.json(
